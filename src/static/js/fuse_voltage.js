@@ -15,13 +15,13 @@ async function main() {
    const rewardTokenTicker = "VOLT";
    const VOLT_CHEF = new ethers.Contract(VOLT_CHEF_ADDR, VOLT_CHEF_ABI, App.provider);
 
-    const rewardsPerWeek = await VOLT_CHEF.voltPerBlock() /1e18 * 604800;
+    const rewardsPerWeek = await VOLT_CHEF.voltPerSec() /1e18 * 604800;
 
     const tokens = {};
     const prices = await getFusePrices();
 
     await loadFuseChefContract(App, tokens, prices, VOLT_CHEF, VOLT_CHEF_ADDR, VOLT_CHEF_ABI, rewardTokenTicker,
-      "ngen", null, rewardsPerWeek, "pendingVolt");
+      "volt", null, rewardsPerWeek, "pendingVolt");
 
     hideLoading();
   }
